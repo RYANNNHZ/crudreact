@@ -56,7 +56,7 @@ export default function () {
                 headers: {
                     // 'Content-Type': 'application/json',
                     "Content-Type": "multipart/form-data",
-                    // 'Accept': 'application/json'
+                    'Accept': 'application/json'
                 }
             })
 

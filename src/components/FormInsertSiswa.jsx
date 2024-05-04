@@ -3,7 +3,7 @@ import * as Icon from 'react-bootstrap-icons'
 
 const FormInsertSiswa = ({nama, umur, kelas, fileGambar,  setNama, setUmur, setKelas, setFileGambar, InsertSiswa, loading}) => {
   function onImageUpload (v) {
-    setFileGambar(v.target.files[0]);
+    setFileGambar(v);
 
     v.target.value = null;
   }
@@ -18,7 +18,7 @@ const FormInsertSiswa = ({nama, umur, kelas, fileGambar,  setNama, setUmur, setK
         <input value={umur} onChange={(v) => setUmur(v.target.value)} type="number" className="form-control mb-3" />
         <label htmlFor=""> kelas </label>
         <input value={kelas} onChange={(v) => setKelas(v.target.value)} type="text" className="form-control mb-3" />
-        <input onChange={(v) => onImageUpload(v)} type="file" className="form-control mb-3" />
+        <input onChange={(v) => onImageUpload(v.target.files[0])} type="file" className="form-control mb-3" />
 
         <button onClick={InsertSiswa} className="btn btn-info text-light">
           {loading && "Loading ...."}
