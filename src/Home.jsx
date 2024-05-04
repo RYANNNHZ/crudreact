@@ -5,6 +5,7 @@ import { FetchSiswas } from "../service/siswa"
 import Modal from "./components/Modal"
 import Card from "./components/Card"
 import FormInsertSiswa from "./components/FormInsertSiswa"
+import axios from "axios"
 
 
 const MySwal = withReactContent(Swal)
@@ -21,6 +22,7 @@ export default function () {
     const [umur, setUmur] = useState(0)
     const [kelas, setKelas] = useState('')
     const [idsiswa, setIdsiswa] = useState(0);
+    const [fileGambar, setFileGambar] = useState();
 
     const [loading, setLoading] = useState(false)
     //
@@ -42,19 +44,20 @@ export default function () {
     //untuk insert data siswa ke Api
     async function InsertSiswa() {
         setLoading(true);
-
+        // console.log(formData);
+        // return;
         try {
-            const res = await fetch(`${import.meta.env.VITE_LINK_API}/store`, {
-                method: 'POST',
+            const res = await axios.post(`${import.meta.env.VITE_LINK_API}/store`, {
+                nama : nama,
+                kelas : kelas,
+                umur : umur,
+                file : fileGambar
+            } ,{
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    'nama': nama,
-                    'umur': umur,
-                    'kelas': kelas
-                })
+                    // 'Content-Type': 'application/json',
+                    "Content-Type": "multipart/form-data",
+                    // 'Accept': 'application/json'
+                }
             })
 
             if (!res.ok) {
@@ -145,6 +148,7 @@ export default function () {
         getModal()
     }
 
+
     return (
         <>
 
@@ -173,6 +177,8 @@ export default function () {
                                 setNama={setNama}
                                 setUmur={setUmur}
                                 setKelas={setKelas}
+                                fileGambar={fileGambar}
+                                setFileGambar={setFileGambar}
                                 InsertSiswa={InsertSiswa}
                                 loading={loading}
                             />
