@@ -148,6 +148,19 @@ export default function () {
         getModal()
     }
 
+    const [form, setForm] = useState(
+        [
+            {
+            nama : "",
+            kelas : "",
+            },
+        ]
+    );
+
+    function tambahForm(){
+        setForm( (prev) => [...prev, {nama : "", kelas : ""}])
+    }
+
 
     return (
         <>
@@ -170,18 +183,24 @@ export default function () {
                 <div className="container py-5 ">
                     <div className="row">
                         <div className="col-6">
-                            <FormInsertSiswa
-                                nama={nama}
-                                umur={umur}
-                                kelas={kelas}
-                                setNama={setNama}
-                                setUmur={setUmur}
-                                setKelas={setKelas}
-                                fileGambar={fileGambar}
-                                setFileGambar={setFileGambar}
-                                InsertSiswa={InsertSiswa}
-                                loading={loading}
-                            />
+                            <button onClick={tambahForm}>Tambah Form</button>
+                            {form.map( (data, index) => (
+                                <FormInsertSiswa
+                                    key={index}
+                                    nama={nama}
+                                    umur={umur}
+                                    kelas={kelas}
+                                    setNama={setNama}
+                                    setUmur={setUmur}
+                                    setKelas={setKelas}
+                                    fileGambar={fileGambar}
+                                    setFileGambar={setFileGambar}
+                                    InsertSiswa={InsertSiswa}
+                                    loading={loading}
+                                />
+                            )
+                            )}
+                            
                         </div>
                     </div>
                     <div className="row">
