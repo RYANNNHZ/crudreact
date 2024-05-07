@@ -33,12 +33,9 @@ export default function () {
     useEffect(() => {
         async function getSiswa() {
             const dataSiswa = await FetchSiswas();
-            setSiswa(dataSiswa)
         }
 
         getSiswa();
-
-        // setSiswa(dataSiswa);
     }, []);
 
     //untuk insert data siswa ke Api

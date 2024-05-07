@@ -7,6 +7,7 @@ import DynamicForm from './DynamicForm'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <DynamicForm />
+    {/* <DynamicForm /> */}
+    <Home />
   </React.StrictMode>,
 )

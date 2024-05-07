@@ -1,5 +1,12 @@
+import axios from "axios";
+
 export async function FetchSiswas() {
-  const res = await fetch(`${import.meta.env.VITE_LINK_API}/siswas`);
-  const data = await res.json()
-  return data.siswa;
+  const token = localStorage.getItem("token") // dapatkan token dari local storage
+  const res = await axios.get(`${import.meta.env.VITE_LINK_API}/siswas`, {
+    headers : {
+      "Authorization" : `Bearer ${token}` // gunakan authorization untuk mengirimkan token ke server
+    }
+  });
+
+  return res;
 }
